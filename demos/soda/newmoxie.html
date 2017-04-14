@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <title>You Got Moxie, Kid - A StoryTrail.org Demo</title>
+    <!-- Bootstrap Core CSS -->
+    <link href=
+    "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel=
+    "stylesheet"><!-- Custom CSS -->
+    <link href="../../CSS/templateBase.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
+    </script>
+    <script src=
+    "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
+    </script>
+    <script src=
+    "//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js">
+    
+    </script><!-- Latest compiled and minified CSS -->
+    <link href=
+    "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel=
+    "stylesheet">
+    <link href=
+    "//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+    rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"
+    rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js">
+    </script>
+    <script src=
+    "//cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.1.11/leaflet-providers.js">
+    </script>
+    <script src=
+    "//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js">
+    </script>
+    <script src=
+    "//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.min.js">
+    </script>
+    <script src=
+    "//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js">
+    </script>
+    <link href=
+    "//cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/css/bootstrap-slider.min.css"
+    rel="stylesheet">
+    <script src=
+    "//cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.min.js">
+    </script><!-- Contains papersMeta, with "papers" list of details  -->
+
+    <link rel="stylesheet" href="../../CSS/stCore.css" />
+
+
+    <script src="//s3.amazonaws.com/storytrail/papers.js">
+    </script><!-- Mapping code  -->
+
+    <script src="../../stMaps.js">
+    </script>
+    <script src="../../stCommon.js">
+    </script><!-- stMain -->
+
+    <script src="../../stDemoMain.js">
+    </script>
+    <script>
+    geojsonMarkerOptions.fillColor = "#f7950c";
+    </script><!-- soda -->
+    <!-- PROJECT-SPECIFIC DATA -->
+
+    <script src=
+    "//s3.amazonaws.com/storytrail.org/demos/soda/queries/moxie.json">
+    </script><!-- actual dates should be 1836 to 1909-->
+
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron" style="{background-color: red}">
+            <h2 id="mainH2">You Got Moxie, Kid!</h2>
+            <h3 id="mainH3">Which "Moxie" came first, the soda or the
+            attitude?</h3>
+            <p id="mainIntroDiv">Moxie was one of the very first "medicinal"
+            sodas, or "tonics". But it also meant "spirited" or "gutsy". Which
+            usage came first? Using the newspaper database of the NEH's
+            "Chronicling America" project, here we show the first 9,000 pages
+            (chronologically) with the word "moxie".</p>
+            <p><small>"Moxie" as a product name is © Moxie Beverage Company,
+            which sells the soda today.</small></p>
+            <div id="divMoreAboutStoryTrail">
+                <p><i>See more about the <a href=
+                "//storytrail.org">StoryTrail.org</a> tool.</i></p>
+            </div>
+        </div>
+    </div><!-- Page Content -->
+    <div class="container">
+        <div id="divBeforeMap"></div><!-- start of mapSlider -->
+        <div class="container-fluid">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <a class="btn"><i aria-hidden="true" class=
+                        "fa fa-border fa-play fa-2x" id="mapSliderPlayPause"
+                        onclick=
+                        "javascript:clickMapSliderPlayPause(true)"></i></a>
+                    </td>
+                    <td width="100%">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b>1836</b>&nbsp;&nbsp;&nbsp;<input class=" span2"
+                    data-slider-max="1908" data-slider-min="1836"
+                    data-slider-step="1" data-slider-value="[1836,1908]" id=
+                    "mapDateSlider" type="text" value=
+                    "">&nbsp;&nbsp;&nbsp;<b>1908</b></td>
+                </tr>
+            </table><br>
+        </div><!-- end of mapSlider -->
+
+        <div class="row" id="mainPresentationRow" >
+
+            <div class="col-sm-8 col-md-9" id="map">
+                <div id='map'></div>
+            </div>
+
+            <div id="nuggetsDiv" class="mygrid-wrapper-div col-sm-4 col-md-3" >
+                <div onclick="handleNuggetClick(0)" class="page-section" id="nuggetId0" >
+                    <h3>A Proper Name?</h3>Before the drink, some people did have a last name of Moxie.
+                    And some people had it as a nickname.
+                    <hr />
+                </div>
+                <div onclick="handleNuggetClick(1)" class="page-section" id="nuggetId1" >
+                    <h3>1876: Moxie Tonic Created</h3>.
+                    Dr. Augustin Thompson, the inventor of Moxie, 
+                    claimed it was made from a South American root by a "Lieutenant Moxie", who was widely considered to be made up. 
+                    <hr />
+                </div>
+                <div onclick="handleNuggetClick(2)" class="page-section" id="nuggetId2"  >
+                    <h3>1887: What's That Spike?</h3>
+                    Starting in 1886, there is a spike of "moxie" mentions for several years.<br />
+                    <img class="img-responsive" src="http://storytrail.org/demos/soda/moxieSpike.png" /><br />
+                    What happened? Well, 1886 was the year Coca-Cola was introduced. Could
+                    it be that people started discussing sodas and their rivalries? Or is our
+                    search picking up a lot of Moxie advertising to counter the Coca-Cola threat?
+                    <hr />
+                </div>
+                
+                <div onclick="handleNuggetClick(3)" class="page-section" id="nuggetId3"  >
+                    <h3>1897: Self-promotion</h3>
+                    A PR flack writes a puff piece in The National saying "[t]he echo of 'You've got a Moxie Nerve' is a part of American history. It is an expression that indicates the spirit of the times." 
+                    <hr />
+                </div>
+                <div onclick="handleNuggetClick(4)" class="page-section" id="nuggetId3"  >
+                    <h3>1900: Nicknames On The Rise</h3>
+                    At the turn of the century, we see many cases of "Moxie" as a male nickname.
+                    One tragic example is <a target="_blank" href="http://chroniclingamerica.loc.gov/lccn/sn85066387/1900-08-26/ed-1/seq-40/#words=Moxie+moxie+MOXIE">Moxie Rosenberg</a>, a San Francisco boy burned in a house fire.<br />
+                    <a target="_blank" href="http://chroniclingamerica.loc.gov/lccn/sn85066387/1900-08-26/ed-1/seq-40/#words=Moxie+moxie+MOXIE"><center><img src="http://chroniclingamerica.loc.gov/lccn/sn85066387/1900-08-26/ed-1/seq-40/thumbnail.jpg" height="90" /></center></a>
+                    Today, by contrast, "Moxie" is <a target="_blank" href="http://rhiever.github.io/baby-name-explorer/index.html?BabyName=moxie">starting to be used</a> as a given name for girls, though not for boys.
+                    <hr />
+                <div onclick="handleNuggetClick(5)" class="page-section" id="nuggetId4"  >
+                    <h3>1908: Becoming A Catchphrase</h3>
+                    More of the "moxie" mentions at this time are about attitude than about the drink.
+                    <hr />
+                </div>
+
+                
+            </div><!-- /mygrid-wrapper-div -->
+
+        </div>
+        <!-- end of row, with scrollable text on left and map on right -->
+    </div><!-- outer content container -->
+    <script>
+    var finalReadyCodeInPublishedPage = function(){
+        nuggets.push({startDate: 1870, title: 'A Proper Name?', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+        nuggets.push({startDate: 1876, title: 'Moxie Tonic Created', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+        nuggets.push({startDate: 1887, title: "What's That Spike?, text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot."});
+        nuggets.push({startDate: 1897, title: 'Self-promotion', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+        nuggets.push({startDate: 1900, title: 'Nicknames On The Rise', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+        nuggets.push({startDate: 1908, title: 'Becoming A Catchphrase', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+
+/*    <!--ticks: [0, 100, 200, 300, 400],-->
+    <!--ticks_positions: [0, 30, 60, 70, 90, 100],-->
+    <!--ticks_labels: ['$0', '$100', '$200', '$300', '$400'],-->
+*/
+
+        if (nuggets.length >0) {
+            scrollToToNugget(0);
+        }
+        console.log("b4 1212");
+        baseLayers["<img  height='30' src='images/map/Pioneer.png' /> Pioneer"].addTo(map);
+        console.log("after 1212");
+        map.setView([38.754, -81.606], 4);
+        handleNuggetClick(0);
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Early Days of Film - A StoryTrail.org Demo</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link href="../../CSS/templateBase.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../CSS/stCore.css" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="//unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.1.11/leaflet-providers.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/css/bootstrap-slider.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.min.js"></script>
+
+    <link rel="stylesheet" href="//leaflet.github.io/Leaflet.label/leaflet.label.css">
+    <script src="//leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
+
+
+
+    <!-- Contains papersMeta, with "papers" list of details  -->
+    <script src="//s3.amazonaws.com/storytrail/papers.js"></script>
+
+    <!-- Mapping code  -->
+    <script src="../../stMaps.js"></script>
+    <script src="../../stCommon.js"></script>
+    
+    <!-- stMain -->
+    <script src="../../stDemoMain.js"></script>
+
+    <!-- st's own style overrides -->
+    <style>
+    .leaflet-label {
+        pointer-events: inherit;
+    }
+    </style>
+
+    <!-- motionpicture -->
+    <!-- PROJECT-SPECIFIC DATA -->
+    <script src="//s3.amazonaws.com/storytrail.org/demos/motionpicture/queries/motionpictures_20160627.json"></script>
+    <!-- actual dates should be 1896 to 1910-->
+    
+</head>
+
+<body>
+
+<div class="container">
+    <div class="jumbotron" style="{backgroundColor: red" >
+        <h2 id="mainH2">Early Days of Film</h2>
+        <h3 id="mainH3">Where and when did "Motion Pictures" appear?</h3>
+        <p id="mainIntroDiv">Using the newspaper database of the NEH's "Chronicling America" project, 
+        here we show the first 17,000 pages (chronologically) with the phrase "motion picture".</p>
+        <div id="divMoreAboutStoryTrail"><p><i>See more about the <a href="//storytrail.org">StoryTrail.org</a> tool.</i></p></div>
+    </div>
+</div>
+    <!-- Page Content -->
+    <div class="container">
+        <div id="divBeforeMap"></div><!-- start of mapSlider -->
+        <div class="container-fluid">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <a class="btn"><i aria-hidden="true" class=
+                        "fa fa-border fa-play fa-2x" id="mapSliderPlayPause"
+                        onclick=
+                        "javascript:clickMapSliderPlayPause(true)"></i></a>
+                    </td>
+                    <td width="100%">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b><span id="startDateLabel">1836-</span></b>&nbsp;&nbsp;&nbsp;<input class=" span2"
+                    data-slider-max="1910" data-slider-min="1894"
+                    data-slider-step="1" data-slider-value="[1894,1910]" id=
+                    "mapDateSlider" type="text" value=
+                    "">&nbsp;&nbsp;&nbsp;<b><span id="endDateLabel">-1922</span></b></td>
+                </tr>
+            </table><br>
+        </div><!-- end of mapSlider -->
+
+        <div class="row" id="mainPresentationRow" >
+
+            <div class="col-sm-8 col-md-9" id="map">
+                <div id='map'></div>
+            </div>
+<!-- June 1894, Holland bros open first kinetoscope parlor
+Edison describes -- http://chroniclingamerica.loc.gov/lccn/sn90059522/1894-04-08/ed-1/seq-18/#words=kinetoscope+Kinetoscope
+http://chroniclingamerica.loc.gov/lccn/sn83030272/1894-03-10/ed-1/seq-1/#words=motion+pictures
+
+-->
+            <div id="nuggetsDiv" class="mygrid-wrapper-div col-sm-4 col-md-3" >
+                <div onclick="handleNuggetClick(0)" class="page-section" id="nuggetId0" >
+                    <h3>1894: Kinetoscope</h3>
+                    In the Spring of 1894, Edison unveiled his Kinetoscope, which offered moving pictures but to an audience of one. While <a target="_blank" href="http://chroniclingamerica.loc.gov/lccn/sn83030272/1894-03-10/ed-1/seq-1/#words=motion+pictures">described</a> as pictures with motion, nobody yet called the productions "motion pictures".<hr />
+                </div>
+                <div onclick="handleNuggetClick(1)" class="page-section" id="nuggetId1" >
+                    <h3>1896: The Lumieres</h3>
+                    The Lumiere brothers premiered their motion picture shows
+                    in Paris, and soon brought it to New York. Word of the wonder quickly spread 
+                    across America. By the end of the year, places a distant as
+                    <a target="_blank" href="http://chroniclingamerica.loc.gov/lccn/sn99021999/1896-12-19/ed-1/seq-3/#words=motion+picture+Motion+Picture+pictures">Omaha</a>, 
+                    <a href="http://chroniclingamerica.loc.gov/lccn/sn82016014/1896-12-16/ed-1/seq-5/#words=motion+picture+Motion+Picture+pictures" target="_blank">Topeka</a>, 
+                    <a href="http://chroniclingamerica.loc.gov/lccn/sn84027621/1896-12-09/ed-1/seq-4/#words=motion+picture+Motion+Picture+pictures" target="_blank">Ocala, FL</a>
+                        were already having regular showings, many using Edison's rival "Vitascope" system.
+                    <hr />
+                </div>
+                <div onclick="handleNuggetClick(2)" class="page-section" id="nuggetId2" >
+                    <h3>1900: Booming Popularity</h3>.
+                    "Motion Pictures" were also known as "Picture Shows".
+                    <hr />
+                </div>
+                <div onclick="handleNuggetClick(3)" class="page-section" id="nuggetId3"  >
+                    <h3>1906: A Regular Habit</h3>
+                    Many New Yorkers were now seeing motion pictures once a week.
+                    <hr />
+                </div>
+
+                
+            </div><!-- /mygrid-wrapper-div -->
+
+        </div>
+        <!-- end of row, with scrollable text on left and map on right -->
+    </div><!-- outer content container -->
+    <script>
+    geojsonMarkerOptions.fillColor='lemonchiffon';
+
+    var initMapData = function(){
+        mapTicks = [1894, 1896, 1900, 1906, 1910]; 
+        mapTicksPositions = [0, 12.5, 37.5, 75, 100]; // Must be 0% to 100%
+        //mapTicksLabels = ['$0', '$100', '$200', '$300' ];
+    }
+    
+    var finalReadyCodeInPublishedPage = function(){
+        baseLayers["TransportDark"].addTo(map);
+        map.setView([38.754, -81.606], 4);
+        markerArray['sn83030272'].bindLabel("<a href='http://chroniclingamerica.loc.gov/lccn/sn83030272/1896-07-26/ed-3/seq-12/#words=motion+picture+Motion+Picture+pictures' target='_blank'>''Motion picture'' first<br />mentioned in '<i>The Sun</i>'<br />"
+        + "<a href='http://chroniclingamerica.loc.gov/lccn/sn83030272/1896-07-26/ed-3/seq-12/#words=motion+picture+Motion+Picture+pictures' target='_blank' >"
+        + "<img src='http://chroniclingamerica.loc.gov/lccn/sn83030272/1896-07-26/ed-3/seq-12/thumbnail.jpg' "
+        + "height='90' /></a><br />(July 26, 1896).</a>", { noHide: true, direction: 'right', clickable: true }).showLabel();
+        
+        nuggets.push({startDate: 1894, title: 'kinetoscope', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+        nuggets.push({startDate: 1896, title: 'alpha', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+        nuggets.push({startDate: 1900, title: 'beta', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+        nuggets.push({startDate: 1906, title: 'gamma', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+
+/*    <!--ticks: [0, 100, 200, 300, 400],-->
+    <!--ticks_positions: [0, 30, 60, 70, 90, 100],-->
+    <!--ticks_labels: ['$0', '$100', '$200', '$300', '$400'],-->
+*/
+        
+// console.log('before ticks');
+//         mapTicks = [1894, 1900, 1904, 1905, 1910]; 
+//         mapTicksPositions = [0, 30, 60, 70, 90, 100]; // Must be 0% to 100%
+//         mapTicksLabels = ['$0', '$100', '$200', '$300', '$400'];
+// console.log('after ticks');
+        setupMapDateSlider([1894,1910]);
+
+        mapDateSlider.setValue([1894,1895]);
+
+        if (nuggets.length >0) {
+            scrollToToNugget(0);
+        }
+        handleNuggetClick(0);
+        stWordsToHighlightInCA = 'motion+picture+Motion+Picture+pictures';
+    }
+</script>

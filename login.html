@@ -1,0 +1,332 @@
+<!DOCTYPE html >
+    <!-- HTML5 Hello world by kirupa - http://www.kirupa.com/html5/getting_your_feet_wet_html5_pg1.htm -->
+    <html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<title>Log in to StoryTrail</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<!-- jQuery library -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+<!-- Leaflet.js -->
+<link rel="stylesheet" href="//unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
+<script src="//unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.1.11/leaflet-providers.js"></script>
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+<style>
+.panel-login {
+	border-color: #ccc;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+.panel-login>.panel-heading {
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:center;
+}
+.panel-login>.panel-heading a{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+	color: #029f5b;
+	font-size: 18px;
+}
+.panel-login>.panel-heading hr{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	clear: both;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+	height: 45px;
+	border: 1px solid #ddd;
+	font-size: 16px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login input:hover,
+.panel-login input:focus {
+	outline:none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-color: #ccc;
+}
+.btn-login {
+	background-color: #59B2E0;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+.btn-login:hover,
+.btn-login:focus {
+	color: #fff;
+	background-color: #53A3CD;
+	border-color: #53A3CD;
+}
+.forgot-password {
+	text-decoration: underline;
+	color: #888;
+}
+.forgot-password:hover,
+.forgot-password:focus {
+	text-decoration: underline;
+	color: #666;
+}
+
+.btn-register {
+	background-color: #1CB94E;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #1CB94A;
+}
+.btn-register:hover,
+.btn-register:focus {
+	color: #fff;
+	background-color: #1CA347;
+	border-color: #1CA347;
+}    
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="text" name="username" autofocus id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group text-center">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<label for="remember"> Remember Me</label>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="button" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+									<!-- Implement ForgotPassword later
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="text-center">
+													<a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+												</div>
+											</div>
+										</div>
+									</div> -->
+								</form>
+								<form id="register-form" method="post" role="form" style="display: none;">
+
+									<div class="form-group">
+										<input type="text" name="regusername" id="regusername" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="regpassword" id="regpassword" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="button" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
+<script>
+jQuery(function() {
+    
+    $('#login-form-link').click(function(e) {
+		$("#login-form").delay(100).fadeIn(100);
+ 		$("#register-form").fadeOut(100);
+		$('#register-form-link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+	$('#register-form-link').click(function(e) {
+		$("#register-form").delay(100).fadeIn(100);
+ 		$("#login-form").fadeOut(100);
+		$('#login-form-link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+
+    jQuery('#login-submit').on('click', function(e) {
+        var name = $('#username').val();
+        var password = $('#password').val();
+        var processLoginUrl = 'https://jt3x6arval.execute-api.us-east-1.amazonaws.com/prod/checkLogin?' 
+        + 'name=' + name
+        + '&password=' + password;
+        
+        console.log('checklogin with: ' + processLoginUrl);
+    
+        jQuery.getJSON(processLoginUrl,
+            function(data) {
+                console.log("Received for processLogin call...");
+                console.log("data=" + data); //JSON.stringify(data));
+                if (typeof data != 'object') {
+	                data = JSON.parse(data);
+	                if (data.result == 'success') {
+						sessionStorage['name'] = name;
+						sessionStorage['password'] = password;
+		                console.log("savin settings =" + JSON.stringify(data.settings)); //JSON.stringify(data));
+						sessionStorage["settings"] = JSON.stringify(data.settings);
+	                    window.location = 'project.html';
+	                } else {
+	                    bootbox.alert("A problem logging in. Wrong password maybe?");
+	                }
+                } else {
+                	bootbox.alert("Could not log in.");
+                	if (data.errorMessage) {
+                		bootbox.alert(data.errorMessage);
+                	}
+                }
+            }
+        ).error(function(jqXHR, textStatus, errorThrown) {
+            bootbox.alert("There was a problem logging in. Wrong password maybe?");
+            console.log(textStatus);
+        });
+    });
+
+    jQuery('#register-submit').on('click', function(e) {
+        var name = $('#regusername').val().trim();
+        var email = $('#email').val().trim();
+        var password = $('#regpassword').val().trim();
+        var confirmpassword = $('#confirm-password').val().trim();
+
+        if ((name === '') ||(email === '') ||(password === '')  ||(confirmpassword === '') ) {
+        	 bootbox.alert("Please create a username and password, and give a working email address.");
+        } else {
+
+			if( (/(.+)@(.+){2,}\.(.+){2,}/.test(email)) == false ){
+			  // invalid email
+			  bootbox.alert("We <i>need</i> a valid email address for you. StoryTrail is providing you with storage, a private workspace, and access to a powerful compute cloud. In exchange, we need to know you are not a robot, and that we can reach you if necessary.")
+			} else {
+			  // valid email
+	        	if (password != confirmpassword) {
+	        		bootbox.alert("Passwords don't match. Please enter the same password twice.");
+	        	} else {
+			        var processLoginUrl = 'https://jt3x6arval.execute-api.us-east-1.amazonaws.com/prod/logincreate?' 
+			        + 'name=' + encodeURIComponent(name)
+			        + '&email=' + encodeURIComponent(email)
+			        + '&password=' + encodeURIComponent(password);
+			        
+			        console.log('checklogin with: ' + processLoginUrl);
+			    
+			        jQuery.getJSON(processLoginUrl,
+			            function(data) {
+			                console.log("Received for loginCreate call...");
+			                console.log("data=" + JSON.stringify(data));
+
+			                if (data.errorMessage){
+			                	bootbox.alert(
+			                		{'title': 'Oops, Cannot Register You',
+			                		'message': data.errorMessage}
+			                	);
+			                } else {
+			                	bootbox.alert(
+			                		{'title': 'Hooray!',
+			                		'message': 'You are now registered. You can log in and start your project.'}
+			                	);
+								// Show the login form again.
+								$("#login-form").delay(100).fadeIn(100);
+						 		$("#register-form").fadeOut(100);
+								$('#register-form-link').removeClass('active');
+								$('#login-form-link').addClass('active');
+		
+			                }
+			     //           if (data == 'success') {
+								// sessionStorage['name'] = name;
+								// sessionStorage['password'] = password;
+			     //               window.location = 'project.html';
+			     //           } else {
+			     //               bootbox.alert("A problem logging in. Wrong password maybe?");
+			     //           }
+			            }
+			        ).error(function(jqXHR, textStatus, errorThrown) {
+			            bootbox.alert("There was a problem registering you. " + textStatus );
+			            console.log(textStatus);
+			        });
+		        
+	        	}
+			}
+        }
+    });
+});
+
+</script>

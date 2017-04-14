@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <title>Meet Me In St. Louis? - A StoryTrail.org Demo</title>
+    <!-- Bootstrap Core CSS -->
+    <link href=
+    "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel=
+    "stylesheet"><!-- Custom CSS -->
+    <link href="../../CSS/templateBase.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
+    </script>
+    <script src=
+    "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
+    </script>
+    <script src=
+    "//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js">
+    
+    </script><!-- Latest compiled and minified CSS -->
+    <link href=
+    "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel=
+    "stylesheet">
+    <link href=
+    "//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+    rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"
+    rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js">
+    </script>
+    <script src=
+    "//cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.1.11/leaflet-providers.js">
+    </script>
+    <script src=
+    "//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js">
+    </script>
+    <script src=
+    "//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.min.js">
+    </script>
+    <script src=
+    "//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js">
+    </script>
+    <link href=
+    "//cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/css/bootstrap-slider.min.css"
+    rel="stylesheet">
+    <script src=
+    "//cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.min.js">
+    </script><!-- Contains papersMeta, with "papers" list of details  -->
+
+    <link rel="stylesheet" href="../../CSS/stCore.css" />
+
+
+    <script src="//s3.amazonaws.com/storytrail/papers.js">
+    </script><!-- Mapping code  -->
+
+    <script src="../../stMaps.js">
+    </script>
+    <script src="../../stCommon.js">
+    </script><!-- stMain -->
+
+    <script src="../../stDemoMain.js">
+    </script>
+    <script>
+    geojsonMarkerOptions.fillColor = "#f7950c";
+    </script><!-- soda -->
+    <!-- PROJECT-SPECIFIC DATA -->
+
+    <script src=
+    "//s3.amazonaws.com/storytrail.org/demos/stlouis/queries/stlouisworldsfair1890_1905.json">
+    </script><!-- actual dates should be 1890 to 1905-->
+
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron" style="{background-color: red}">
+            <h2 id="mainH2">Meet Me In St. Louis?</h2>
+            <h3 id="mainH3">A city's fight to host a World's Fair</h3>
+            <p id="mainIntroDiv">St. Louis wanted to host the 1892 World's Fair, a Columbian Exposition
+            to celebrate the 400th anniversary of the voyages of Columbus. Chicago ended up hosting that
+            fair, but St. Louis was still determined to get their own. Here we plot the 6,400 pages in <a href="http://www.neh.gov" target="_blank">NEH</a>'s <a href="http://chroniclingamerica.loc.gov/" target="_blank">Chronicling America</a> project between 1890 and 1905 that contain the phrase "St. Louis World's Fair".</p>
+            <div id="divMoreAboutStoryTrail">
+                <p><i>See more about the <a href=
+                "//storytrail.org">StoryTrail.org</a> tool.</i></p>
+            </div>
+        </div>
+    </div><!-- Page Content -->
+    <div class="container">
+        
+        <div class="row">
+        <!-- start of mapSlider -->
+        <div class="col-sm-8 col-md-9">
+        <table border="0"  width="100%">
+            <tr>
+            <td><a class="btn "  ><i onclick="javascript:clickMapSliderPlayPause(true)" id="mapSliderPlayPause" class="fa fa-border fa-play fa-2x" aria-hidden="true"></i></a></td>
+            <td valign="middle">&nbsp;&nbsp;&nbsp;&nbsp;<b><span id="startDateLabel">1890-</span></b>&nbsp;&nbsp;&nbsp;
+            </td>
+            <td valign="middle" width="100%"><input id="mapDateSlider" type="text" class="mapSliderClass span2" value="" data-slider-min="1890" data-slider-max="1904" data-slider-step="1" data-slider-value="[1890,1904]"/>
+            </td>
+            <td valign="middle">&nbsp;&nbsp;&nbsp;<b><span id="endDateLabel">-1904</span></b>
+            </td>
+            <td valign="middle">&nbsp;&nbsp;<span class="bigFinalDate" id="bigFinalDateText">1904</span></td>
+            </tr>
+        </table>
+        </div>
+        <div class="col-sm-4 col-md-3" id="scrubChart" style=" height:70px"></div>
+        
+        </div>
+        <br />
+        
+        <div class="row" id="mainPresentationRow" >
+
+            <div class="col-sm-8 col-md-9" id="map">
+                <div id='map'></div>
+            </div>
+
+            <div id="nuggetsDiv" class="mygrid-wrapper-div col-sm-4 col-md-3" >
+                <div onclick="handleNuggetClick(0)" class="page-section" id="nuggetId0" >
+                    <h3>1890: Chicago Picked For Columbian Expo</h3>
+                    St. Louis had a World's Fair committee working to win the Columbian Exposition, but it had been a long shot. Even Chicago, the winner,
+                    was a long shot, with New York favored. But Chicago <a href="http://chroniclingamerica.loc.gov/lccn/sn83030193/1889-10-15/ed-2/seq-1/#words=Louis+World+Worlds+worlds+fair+Fair" target="_blank">out-manuevered</a> New York, and put on a fantastic fair. It included the first Ferris Wheel, and
+                    the fairgrounds ended up as the site of the future University of Chicago.
+                    <hr />
+                </div>
+                <div onclick="handleNuggetClick(1)" class="page-section" id="nuggetId1"  >
+                    <h3>1898: Jostling For The Louisiana Exposition</h3>
+                    As the 100th anniversary of the 1803 Lousiana Purchase treaty approached, it was clear it would be a big
+                    opportunity for a fair. <a href="http://chroniclingamerica.loc.gov/lccn/sn89066818/1898-02-12/ed-1/seq-2/#words=Louis+World+Worlds+worlds+fair+Fair" target="_blank">Kansas City</a>
+                    and some other cities vied for the honor. St. Louis had a head start, though. 
+                    David R. Francis had already been <a href="http://chroniclingamerica.loc.gov/lccn/sn86063615/1898-09-12/ed-1/seq-4/#words=Louis+World+Worlds+worlds+fair+Fair" target="_blank" >boosting</a> the idea to St. Louis 
+                    businessmen in mid-1897.
+                    <hr />
+                </div>
+                
+                <div onclick="handleNuggetClick(2)" class="page-section" id="nuggetId2"  >
+                    <h3>1899: A United Front</h3>
+                    The Missouri Legislature passed <a href="http://chroniclingamerica.loc.gov/lccn/sn82015679/1899-03-13/ed-1/seq-5/#words=Louis+World+Worlds+worlds+fair+Fair" target="_blank">$6 million in bonds</a>
+                    for the fair. By the Summer, <a href="http://chroniclingamerica.loc.gov/lccn/sn99021999/1899-06-03/ed-1/seq-1/#words=Louis+World+Worlds+worlds+fair+Fair" target="_blank">support coalesced</a> onto St. Louis from 13 other states, who together called on Congress to provide funding.
+                    <hr />
+                </div>
+                
+                <div onclick="handleNuggetClick(3)" class="page-section" id="nuggetId3"  >
+                    <h3>1901: St Louis Wins!</h3>
+                    The city was excited to learn that Congress had <a href="http://chroniclingamerica.loc.gov/lccn/sn84020274/1901-03-05/ed-1/seq-1/#words=Louis+World+Worlds+worlds+fair+Fair" target="_blank">chosen it</a> to host the Louisiana Purchase Exposition.
+                    <img class="img-responsive" src="http://storytrail.org/demos/stlouis/wfbill.png" /><br />
+            
+                    It was a major news topic 
+                    for the next three years, as the country watched the fair's progress.<br />
+                    <center><a href="http://chroniclingamerica.loc.gov/lccn/sn84020274/1901-03-05/ed-1/seq-1/#words=Louis+World+Worlds+worlds+fair+Fair" target="_blank"><img 
+                    class="img-responsive" src="http://storytrail.org/demos/stlouis/nothingimpossiblesmall.png" /></a></center>
+
+                    
+                    <hr />
+                </div>
+                <div onclick="handleNuggetClick(4)" class="page-section" id="nuggetId4"  >
+                    <h3>1904: The Fair Opens</h3>
+                    Although originally planned for 1903, the fair was delayed one year for completion. 
+                    Despite some <a href="http://chroniclingamerica.loc.gov/lccn/sn88085187/1904-04-30/ed-1/seq-1/#words=WORLD+exposition+FAIR+OPENING">unfortunate events</a> on Opening Day, roughly 20 million visitors viewed the fair. 
+                    It saw the introduction of ice cream cones and hamburgers on buns to the mass public, and was said to be one of very few world's fairs of the Victorian age to be profitable.
+                    <br />On December 1st, in line with its mandate from Congress, the fair was <a href="http://chroniclingamerica.loc.gov/lccn/sn85058130/1904-12-02/ed-1/seq-1/#words=Purchase+fair+FAIR+expoSItIon+Exposition+exposition+Louisiana">shut down</a> at 4pm, it's briliant electric liights fading out for the last time.
+                    <hr />
+                </div>
+
+
+
+
+
+
+
+            </div><!-- /mygrid-wrapper-div -->
+
+        </div>
+        <!-- end of row, with scrollable text on left and map on right -->
+    </div><!-- outer content container -->
+    <script>
+    geojsonMarkerOptions.fillColor='blue';
+    var cleanAndEncodedTerms = function(){return "Louis+World+Worlds+worlds+fair+Fair"};
+
+    var initMapData = function(){
+        mapTicks = [1890, 1898,1899,1901,1904]; 
+        mapTicksPositions = [0, 53.3,60,73.3, 100]; // Must be 0% to 100%
+        //mapTicksLabels = ['$0', '$100', '$200', '$300' ];
+        
+        mapAnimationTimerDelay = 300;
+    }
+        
+    var finalReadyCodeInPublishedPage = function(){
+        nuggets.push({startDate: 1890, title: 'A Proper Name?', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+        nuggets.push({startDate: 1898, title: 'Moxie Tonic Created', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+        nuggets.push({startDate: 1899, title: "What's That Spike?, text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot."});
+        nuggets.push({startDate: 1901, title: 'Self-promotion', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+        nuggets.push({startDate: 1904, title: 'Self-promotion', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+        //nuggets.push({startDate: 1905, title: 'Becoming A Catchphrase', text:'Ipso Lorem - Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot. Lotsa text here. This is quite a lot.'});
+
+/*    <!--ticks: [0, 100, 200, 300, 400],-->
+    <!--ticks_positions: [0, 30, 60, 70, 90, 100],-->
+    <!--ticks_labels: ['$0', '$100', '$200', '$300', '$400'],-->
+*/
+        setupMapDateSlider([1890,1904]);
+        mapDateSlider.setValue([1890,1890]);
+
+        barChartData = [
+            [1890,12],
+            [1891,2],
+            [1892,1],
+            [1893,2],
+            [1894,0],
+            [1895,0],
+            [1896,0],
+            [1897,0],
+            [1898,4],
+            [1899,136],
+            [1900,271],
+            [1901,841],
+            [1902,1140],
+            [1903,2176],
+            [1904,1812]
+        ];
+        generateScrubChartPlot();  // added
+        setupScrubChartEvents();  // added
+        
+        if (nuggets.length >0) {
+            scrollToToNugget(0);
+        }
+        baseLayers["<img  height='30' src='images/map/Landscape.png' /> Landscape"].addTo(map);
+        map.setView([38.754, -81.606], 4);
+        handleNuggetClick(0);
+        stWordsToHighlightInCA = "Louis+World+Worlds+worlds+fair+Fair";
+    }
+    </script>
+</body>
+</html>

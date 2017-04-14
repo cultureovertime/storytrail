@@ -1,0 +1,337 @@
+<!DOCTYPE html >
+<!-- HTML5 Hello world by kirupa - http://www.kirupa.com/html5/getting_your_feet_wet_html5_pg1.htm -->
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+    <!-- Leaflet.js -->
+<!-- TOO NEW! Breaks layersControl by returning array instead of {} object.
+    <link rel="stylesheet" href="//unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="//unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    -->
+        <link href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"
+    rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js">
+    </script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.1.11/leaflet-providers.js"></script>
+
+    <!-- jQuery library -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+    <link rel="stylesheet" href="CSS/logo-nav.css">
+    <link rel="stylesheet" href="CSS/stCore.css" />
+
+
+    <!-- Contains papersMeta, with "papers" list of details  -->
+    <script src="//s3.amazonaws.com/storytrail/papers.js"></script>
+
+    <!-- Mapping code  -->
+    <script src="./stMaps.js"></script>
+    <script src="./stCommon.js"></script>
+
+    <!-- bootstrap-table -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.js"></script>
+
+    <!-- bootstrap-slider -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/css/bootstrap-slider.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.min.js"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.7/leaflet.draw.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.7/leaflet.draw.js"></script>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>
+
+    <!-- stMain -->
+    <script src="stMain.js"></script>
+
+    <title>StoryTrail</title>
+
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#st-navbar-to-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img height="30" src="//s3.amazonaws.com/storytrail/images/StoryTraillogo222.jpg" alt="StoryTrail">
+                </a>
+            </div>
+
+
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="st-navbar-to-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="javascript:bootbox.alert({
+                            title: 'About StoryTrail',
+                            message: 'StoryTrail is a research and visualization tool to discover stories and patterns in Chronicling America, a site containing historical newspapers from 1836 to 1922 provided by the Library of Congress and the National Endowment for the Humanities. StoryTrail uses the public API for Chronicling America.'
+                            }); ">About</a>
+                    </li>
+                    <li>
+                        <a href="mailto:matt@mattjensen.com">Contact</a>
+                    </li>
+
+                    <li>
+                        <!--<a #id=loginLink href="login.html">Login</a>-->
+                        <a #id=logoutLink href='javascript:sessionStorage["name"]=""; location.href="login.html";'>Sign Out</a>
+
+
+
+                    </li>
+
+
+
+
+            </div>
+            <!-- /.navbar-collapse -->
+
+
+
+
+
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- end Navigation -->
+    
+    
+    <ul class="nav nav-tabs" id="myTab">
+        <li class="active"><a id="searchTabLink" data-target="#SearchTab" data-toggle="tab">Search</a></li>
+        <li><a id="presentationTabLink" data-target="#PresentationTab" data-toggle="tab">Presentation</a></li>
+    </ul>
+    
+    <div class="tab-content" id="AllTabContent">
+        <div class="tab-pane active" id="SearchTab">
+            <div class="container-fluid">
+                <!-- Search Form --><br /><br />
+                <form class="form-inline" id="searchForm" name="searchForm" role=
+                "form">
+                    <div class="form-group">
+                        <div class="row col-sm-12" id='searchDateSlider'>
+                            Date:&nbsp;<b>1836&nbsp;&nbsp;&nbsp;</b><input class=
+                            " span2" data-slider-max="1922" data-slider-min="1836"
+                            data-slider-step="1" data-slider-value="[1836,1922]" id=
+                            "dateSlider" name="dateSlider" style=
+                            " .slider-selection { background: yellow; }" type="text"
+                            value="" width="100%"> <b>&nbsp;&nbsp;1922</b>
+                        </div><!--
+        <input type="button" name='GB' value='GB' onclick="retrieveGBStats('cheese')" />
+        -->
+                        Find:&nbsp;<select class="form-control" id="textTypeSelect"
+                        name="textTypeSelect">
+                            <option value="and">
+                                All of
+                            </option>
+                            <option value="or">
+                                Any of
+                            </option>
+                            <option value="phrase">
+                                Phrase
+                            </option>
+                        </select>&nbsp;of&nbsp;<input autofocus="" class="form-control"
+                        id="termsInput" name="termsInput" type="text">&nbsp;&nbsp;
+                        Rows: <select class="form-control" id="nrows" name="nrows">
+                            <option value="50">
+                                50
+                            </option>
+                            <option selected="selected" value="100">
+                                100
+                            </option>
+                            <option value="200">
+                                200
+                            </option>
+                            <option value="500">
+                                500
+                            </option>
+                        </select>&nbsp;Sort&nbsp;by:&nbsp;<select class="form-control"
+                        id="sortSelect" name="sortSelect">
+                            <option value="relevance">
+                                Relevance
+                            </option>
+                            <option value="date">
+                                Date
+                            </option>
+                        </select>&nbsp; <!--
+            StartDate: <input type="text" name="startDdate" id="startDate">
+            EndDate: <input type="text" name="endDate" id="endDate">
+            -->
+                         <button class="btn btn-primary" id="searchGoBtn" type=
+                        "button">Search <span class="spinner"><i class="" id=
+                        'searchGoBtnSpinner'></i></span></button> <button class="btn"
+                        id="searchMoreBtn" type="button">Get More <span class=
+                        "spinner"><i class="" id=
+                        'searchMoreBtnSpinner'></i></span></button> <button class="btn"
+                        id="searchManyMoreBtn" type="button">Get Many More <span class=
+                        "spinner"><i class="" id=
+                        'searchManyMoreBtnSpinner'></i></span></button>
+                    </div>
+                </form><!-- End Search Form-->
+            </div>
+
+            <div class="container-fluid" id="dataSetResults-adhoc"> <!-- start retrieved results -->
+                <hr>
+                <span id="retrievalSummary">Retrieved <span class="badge" id=
+                'retrievedBadge'>-</span> <span id='outOfPossible'></span></span>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-4" id="barChartPlaceholder" style=
+                        "height:140px;"></div>
+                        <div class="col-sm-2 container-fluid">
+                            <div class="content" id="imgPreview">
+                                <h3>(Preview)</h3>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 table-responsive panel-body" id=
+                        "resultTableDiv" style="max-height: 8;overflow-y: scroll;">
+                            <!--<div class="table-responsive panel-body" style="max-height: 8;overflow-y: scroll;">-->
+                            <table class=
+                            "table table-striped table-bordered table-condensed"
+                            data-detail-formatter="detailFormatter" data-detail-view=
+                            "true" data-page-size="8" data-pagination="true"
+                            data-smart-display="true" id="itemsTable">
+                                <thead>
+                                    <tr>
+                                        <th data-field="date" data-sortable="true">
+                                        Date</th>
+                                        <th data-field="title" data-sortable="true">
+                                        Title</th>
+                                        <th data-field="seg" data-sortable="true">
+                                        Segment</th>
+                                    </tr>
+                                </thead>
+                            </table><!--</div>-->
+                            <!-- end of right results panel -->
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end of retrieved results -->
+
+        </div>
+        
+        <div class="tab-pane" id="PresentationTab"> <!-- controls for presentation -->
+            <br />
+            <div class="container-fluid" id="dataSetControlsContainer">
+                <div class="row" id="dataSetControls-adhoc"><!-- clone this to support saved data sets -->
+                    <div class=" col-sm-6 ">
+                        <table><tr>
+                        <td width="150">
+                        Marker Color:
+                        
+                        <div id="colorPickerMarkerFill-adhoc" class="input-group colorpicker-component">
+                            <input type="text" value="#ff7800" class="form-control" />
+                            <span class="input-group-addon"><i class="fa  " mjdontuse="fa-circle" aria-hidden="true"></i></span>
+                        </div>
+                        </td><td>&nbsp;&nbsp;&nbsp;</td>
+                        <td valign="top"><h4 class="dataSetTitle" id="dataSetTitle-adhoc">Current</h4>
+                            <div class="checkbox">
+                              <label><input type="checkbox" value="">Include markers in map</label>
+                            </div>
+                        </td>    
+                        </tr></table>
+                    </div>
+                        <hr />
+                </div> <!-- dataSetControls-adhoc -->
+            </div> <!-- end bootstrap wrapper for PresentationTab -->
+            <a href="javascript:saveSettings()">SaveSettings</a>
+                
+        </div><!-- end PresentationTab -->
+    </div>
+
+    <hr style="height:3px;border:none;color:#888;background-color:#888;" />
+
+    <div class="container-fluid"><!-- start of presentation content like the map -->
+
+        <!--<input type=button onclick="adjustFeatures();" name="foo" id="foobtn" />-->
+        <div class="row">
+            <!-- start of mapSlider -->
+            <div class="col-sm-8 col-md-9">
+                <table border="0" width="100%">
+                    <tr>
+                        <td>
+                            <a class="btn"><i aria-hidden="true" class=
+                            "fa fa-border fa-play fa-2x" id=
+                            "mapSliderPlayPause" onclick=
+                            "javascript:clickMapSliderPlayPause(true)"></i></a>
+                        </td>
+                        <td valign="middle">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<b><span id="startDateLabel">1836-</span></b>&nbsp;&nbsp;&nbsp;</td>
+                        <td valign="middle" width="100%"><input class=
+                        "mapSliderClass span2" data-slider-max="1922"
+                        data-slider-min="1836" data-slider-step="1"
+                        data-slider-value="[1836,1922]" id="mapDateSlider"
+                        type="text" value=""></td>
+                        <td valign="middle">&nbsp;&nbsp;&nbsp;<b><span id=
+                        "endDateLabel">-1922</span></b></td>
+                        <td valign="middle">&nbsp;&nbsp;<span class=
+                        "bigFinalDate" id="bigFinalDateText">1922</span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-4 col-md-3" id="scrubChart" style=
+            " height:70px"></div>
+        </div><br>
+
+        <div id='map'></div>
+    </div>
+    
+    <div id="nuggetsDiv"></div><!-- manyMoreDialog -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade"
+    id="manyMoreDialog" role="dialog" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 id="manyMoreDialogTitle">Retrieving...</h1>
+                    <h3>Retrieved <span id="numRetrieved">-</span> of <span id=
+                    "numTotal">-</span>.<br></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="progress">
+                        <div aria-valuemax="100" aria-valuemin="0"
+                        aria-valuenow="0" class=
+                        "progress-bar active progress-bar-striped" id=
+                        'myprogress' role="progressbar" style="width: 0%">
+                            <span class="sr-only">0% Complete (success)</span>
+                        </div>
+                    </div><!-- end ofprogress -->
+                    <hr>
+                    <div>
+                        <button class="btn btn-lg btn-primary" onclick=
+                        "requestCloseManyMoreDialog();" type=
+                        "button">Stop</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- end of  manyMoreDialog-->
+
+</body>
+
+</html>

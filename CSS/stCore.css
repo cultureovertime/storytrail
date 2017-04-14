@@ -1,0 +1,89 @@
+        #mainContent {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            font-weight: bold;
+            background-color: #E3F0FB;
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .bigFinalDate {
+            border: thin solid #F0E020;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+        	font-size: 1.2em;
+        }
+        
+        .buttonStyle {
+            border-radius: 4px;
+            border: thin solid #F0E020;
+            padding: 5px;
+            background-color: #F8F094;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            color: #663300;
+            width: 75px;
+        }
+        
+        .buttonStyle:hover {
+            border: thin solid #FFCC00;
+            background-color: #FCF9D6;
+            color: #996633;
+            cursor: pointer;
+        }
+        
+        .buttonStyle:active {
+            border: thin solid #99CC00;
+            background-color: #F5FFD2;
+            color: #669900;
+            cursor: pointer;
+        }
+
+/*  slider and nugget styles   */
+    .mygrid-wrapper-div {
+    border: solid gray 1px;
+    overflow: scroll;
+    height: 350px;
+    }
+    
+    .page-section {
+    	width: 100%;
+    	background: #666;
+    	color:#888;
+        cursor: pointer; cursor: hand;
+    }
+
+    .page-section-active {
+    	width: 100%;
+    	background: #000;
+    	color: #FFF;
+    }
+
+    .page-section h1 {
+    	font-size: 4em;
+    }
+    .page-section h1 span {
+    	font-weight: 200;
+    }
+    /*.page-section h2 {*/
+    /*	font-size: 2em;*/
+    /*	font-weight: 600;*/
+    /*	color: #000;*/
+    /*}*/
+    .page-section p {
+    	font-size: 1.2em;
+    	font-weight: 200;
+    }
+
+
+.mapSliderClass {
+    width: 100% !important;
+}
+    
+.st-slider .slider-track-high {
+	background: #E2E2E2;
+}
+.st-slider .slider-selection {
+	background: lightblue;
+}

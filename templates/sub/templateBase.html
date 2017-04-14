@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>AAA_Title_ZZZ</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link href="../../CSS/templateBase.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="//unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.1.11/leaflet-providers.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/css/bootstrap-slider.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.min.js"></script>
+
+
+
+
+
+    <!-- Contains papersMeta, with "papers" list of details  -->
+    <script src="//s3.amazonaws.com/storytrail/papers.js"></script>
+
+    <!-- Mapping code  -->
+    <script src="../../stMaps.js"></script>
+    <script src="../../stCommon.js"></script>
+    
+    <!-- stMain -->
+    <script src="../../stViewMain.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="jumbotron"  >
+        <h2 id="mainH2">AAA_h2_ZZZ</h2>
+        <h3 id="mainH3">AAA_h3a_ZZZ</h3>
+        <p id="mainIntroDiv">AAA_mainIntroDiv_ZZZ</p>
+    </div>
+</div>
+    <!-- Page Content -->
+    <div class="container">
+        <div id="divBeforeMap"></div>
+        <div class="container-fluid">
+            <table width="100%">
+                <tr>
+                    <td><a class="btn " href="javascript:pauseMapSlider()"><i class="fa fa-border fa-pause fa-2x" aria-hidden="true"></i></a></td>
+                    <td><a class="btn " href="javascript:playMapSlider()"><i class="fa fa-border fa-play fa-2x" aria-hidden="true"></i></a></td>
+                    <td width="100%">&nbsp;&nbsp;&nbsp;&nbsp;<b>1836</b>&nbsp;&nbsp;&nbsp;<input id="mapDateSlider" type="text" class="span2" value="" data-slider-min="1836" data-slider-max="1922" data-slider-step="1" data-slider-value="[1836,1922]" />&nbsp;&nbsp;&nbsp;<b>1922</b>
+                    </td>
+                </tr>
+            </table>
+            <br />
+        </div>
+                
+        <div bgcolor='red' width='100%' height='300' id='map'>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+
+</body>
+
+</html>
