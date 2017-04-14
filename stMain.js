@@ -621,7 +621,7 @@ var saveSettings = function(){
     
     console.log(JSON.stringify(settings));
     console.log('keys... ' + Object.keys(ds));
-    sessionStorage["settings"] = settings;
+    sessionStorage["settings"] = JSON.stringify(settings);
     // TBD: save in cloud
 };    
 // END saving settings
@@ -629,10 +629,9 @@ var saveSettings = function(){
 
 var configureFromSavedSettings = function(){
     console.log('Starting configureFromSavedSettings.');
-    if (sessionStorage["settings"] !== null) {
-        var sraw = sessionStorage["settings"];
-        var s = JSON.parse(sraw).S;
-        var mySettings = JSON.parse(s);
+    if (sessionStorage.getItem("settings") !== null) {
+        var sraw = sessionStorage.getItem("settings");
+        var mySettings = JSON.parse(sraw);
         // console.log('raw settings = ' + sraw);
         // console.log('settings = ' + s);
         // console.log('JSONsettings = ' + JSON.parse(s));
